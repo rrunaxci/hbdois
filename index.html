@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday ❤️</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .bg-romantic {
+            background: linear-gradient(to bottom right, #0f172a, #1e293b, #111827);
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .fade-in {
+            animation: fadeIn 1.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .typing::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-romantic text-white min-h-screen">
+
+    <!-- MUSIC -->
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- HERO SECTION -->
+    <section class="min-h-screen flex items-center justify-center px-6 text-center relative overflow-hidden">
+
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute w-72 h-72 bg-pink-500 rounded-full blur-3xl top-10 left-10"></div>
+            <div class="absolute w-72 h-72 bg-purple-500 rounded-full blur-3xl bottom-10 right-10"></div>
+        </div>
+
+        <div class="relative z-10 max-w-3xl fade-in">
+
+            <div class="text-6xl mb-6 floating">🎂</div>
+
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                Happy Birthday <br>
+                <span class="text-pink-400">Oiiss 𖹭.ᐟ</span>
+            </h1>
+
+            <p class="text-gray-300 text-lg md:text-xl mb-10">
+                Aku punya sesuatu buat kamu...
+            </p>
+
+            <button
+                id="startBtn"
+                class="bg-pink-500 hover:bg-pink-600 transition px-8 py-4 rounded-full text-lg font-semibold shadow-2xl"
+            >
+                Buka 🎁
+            </button>
+
+        </div>
+    </section>
+
+    <!-- MESSAGE SECTION -->
+    <section id="messageSection" class="hidden py-24 px-6">
+        <div class="max-w-4xl mx-auto glass rounded-3xl p-10 md:p-16 fade-in">
+
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-12 text-pink-400">
+                ──── ❤ ────
+            </h2>
+
+            <p
+                id="typingText"
+                class="typing text-lg md:text-2xl text-center leading-relaxed text-gray-200 min-h-[200px]"
+            ></p>
+
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallerySection" class="hidden py-20 px-6">
+
+        <div class="max-w-6xl mx-auto text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-pink-400 mb-4">
+                Foto foto lucuu kitaaa ₍ᐢ. .ᐢ₎ ₊˚⊹♡
+            </h2>
+
+            <p class="text-gray-300 text-lg">
+                
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+            <div class="glass rounded-3xl overflow-hidden hover:scale-105 transition duration-500">
+                <img
+                    src="kiri.jpg"
+                    class="w-full h-80 object-cover"
+                >
+            </div>
+
+            <div class="glass rounded-3xl overflow-hidden hover:scale-105 transition duration-500">
+                <img
+                    src="tengah.jpg"
+                    class="w-full h-80 object-cover"
+                >
+            </div>
+
+            <div class="glass rounded-3xl overflow-hidden hover:scale-105 transition duration-500">
+                <img
+                    src="kanan.jpg"
+                    class="w-full h-80 object-cover"
+                >
+            </div>
+
+        </div>
+    </section>
+
+    <!-- AUDIO SECTION -->
+    <section id="letterSection" class="hidden py-24 px-6">
+
+        <div class="max-w-4xl mx-auto glass rounded-3xl p-10 md:p-16 fade-in text-center">
+
+             <h2 class="text-4xl md:text-5xl font-bold text-pink-400 mb-6">
+                 Lagu by Penyanyi
+            </h2>
+
+            <p class="text-gray-300 mb-10 text-lg">
+                .✮ Voice Message For You 🎧ྀི♪⋆ 
+            </p>           
+
+            <div class="bg-white/10 rounded-2xl p-6">
+
+                <audio controls class="w-full">
+                    <source src="voice.mp3" type="audio/mp3">
+                </audio>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ENDING -->
+    <section id="endingSection" class="hidden min-h-screen flex items-center justify-center px-6 text-center">
+
+        <div class="fade-in">
+            <h1 class="text-5xl md:text-7xl font-bold mb-8 text-pink-400">
+                Happy Birthday 𝄞⨾𓍢ִ໋
+            </h1>
+
+            <p class="text-gray-300 text-xl mb-10">
+                and thank you for being in my life .𖥔 ݁ ˖
+            </p>
+
+            <button
+                onclick="location.reload()"
+                class="bg-white text-black px-8 py-4 rounded-full font-semibold hover:scale-105 transition"
+            >
+                ⤿ Replay 
+            </button>
+        </div>
+
+    </section>
+
+    <script>
+
+        const startBtn = document.getElementById('startBtn');
+        const messageSection = document.getElementById('messageSection');
+        const gallerySection = document.getElementById('gallerySection');
+        const letterSection = document.getElementById('letterSection');
+        const endingSection = document.getElementById('endingSection');
+        const typingText = document.getElementById('typingText');
+        const bgMusic = document.getElementById('bgMusic');
+
+       const message = `Haiii sayang 𐔌՞꜆. ̫.꜀՞𐦯 Selamat ulang tahun yaaa ⋆˙⟡
+
+Makasih yaaa udah hadir di hidup aku dan selalu bikin hari-hari aku jadi lebih bahagiaaa wlee (˶˃𐃷˂˶)
+
+Semoga doa doa nya terkabulkan dan semakin banyak hal baik yang datang ke kamuuu ᯓ ᡣ𐭩
+
+woppu ⭑.ᐟ`;
+
+        startBtn.addEventListener('click', () => {
+
+            bgMusic.play();
+
+            launchConfetti();
+
+            messageSection.classList.remove('hidden');
+
+            typeMessage();
+
+            setTimeout(() => {
+                gallerySection.classList.remove('hidden');
+            }, 9000);
+
+            setTimeout(() => {
+                letterSection.classList.remove('hidden');
+            }, 12000);
+
+            setTimeout(() => {
+                endingSection.classList.remove('hidden');
+            }, 15000);
+
+            messageSection.scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        function typeMessage() {
+
+    let index = 0;
+
+    const interval = setInterval(() => {
+
+        if(message.charAt(index) === '\n'){
+
+            typingText.innerHTML += '<br>';
+
+        } else {
+
+            typingText.innerHTML += message.charAt(index);
+
+        }
+
+        index++;
+
+        if(index >= message.length){
+            clearInterval(interval);
+        }
+
+    }, 50);
+}
+
+        function launchConfetti() {
+
+            const duration = 5 * 1000;
+            const animationEnd = Date.now() + duration;
+
+            const defaults = {
+                startVelocity: 30,
+                spread: 360,
+                ticks: 60,
+                zIndex: 999
+            };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            const interval = setInterval(function() {
+
+                const timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                const particleCount = 50 * (timeLeft / duration);
+
+                confetti(Object.assign({}, defaults, {
+                    particleCount,
+                    origin: {
+                        x: randomInRange(0.1, 0.3),
+                        y: Math.random() - 0.2
+                    }
+                }));
+
+                confetti(Object.assign({}, defaults, {
+                    particleCount,
+                    origin: {
+                        x: randomInRange(0.7, 0.9),
+                        y: Math.random() - 0.2
+                    }
+                }));
+
+            }, 250);
+        }
+
+    </script>
+
+</body>
+</html>
+
